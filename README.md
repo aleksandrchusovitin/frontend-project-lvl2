@@ -8,6 +8,9 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fb3973358a1d66c2bc0e/test_coverage)](https://codeclimate.com/github/aleksandrchusovitin/frontend-project-lvl2/test_coverage)
 
+## Eslint and tests status
+[![Node.js CI](https://github.com/aleksandrchusovitin/frontend-project-lvl2/actions/workflows/node.js.yml/badge.svg)](https://github.com/aleksandrchusovitin/frontend-project-lvl2/actions/workflows/node.js.yml)
+
 ## Install ##
 
 ```sh
