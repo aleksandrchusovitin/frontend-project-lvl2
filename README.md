@@ -2,7 +2,7 @@
 
 [![Actions Status](https://github.com/aleksandrchusovitin/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/aleksandrchusovitin/frontend-project-lvl2/actions)
 
-## CodeClimate ##
+## CodeClimate status ##
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/fb3973358a1d66c2bc0e/maintainability)](https://codeclimate.com/github/aleksandrchusovitin/frontend-project-lvl2/maintainability)
 
