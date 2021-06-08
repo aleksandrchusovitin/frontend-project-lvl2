@@ -2,13 +2,21 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {},
+    "testRunner": "jest-circus/runner"
+  },
+  "engines": {
+    "node": ">=14"
+  },
   "description": "Console utility that compares two configuration files and shows a difference",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npx jest --bail"
   },
   "repository": {
     "type": "git",
@@ -21,13 +29,18 @@
   },
   "homepage": "https://github.com/aleksandrchusovitin/frontend-project-lvl2#readme",
   "devDependencies": {
+    "@jest/globals": "^27.0.3",
     "eslint": "^7.28.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
+    "jest": "^27.0.4",
+    "jest-circus": "^27.0.4",
+    "jest-cli": "^27.0.4",
     "prettier": "^2.3.1"
   },
   "dependencies": {
     "commander": "^7.2.0",
+    "debug": "^4.3.1",
     "lodash": "^4.17.21"
   }
 }
