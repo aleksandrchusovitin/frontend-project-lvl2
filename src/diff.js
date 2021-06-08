@@ -1,37 +1,37 @@
 import * as fs from 'fs';
-import * as path from 'path';
+// import * as path from 'path';
 import _ from 'lodash';
 
-export default (filepath1, filepath2) => {
-  let result = '{\n';
-  try {
-    const filePath1 = path.resolve(filepath1);
-    const filePath2 = path.resolve(filepath2);
+const normalizeFiles = (file1, file2) => {
+  if (file1.endsWith('.json') && file2.endsWith('.json')) {
+    const normalizeFile1 = JSON.parse(fs.readFileSync(file1));
+    const normalizeFile2 = JSON.parse(fs.readFileSync(file2));
 
-    const file1 = fs.readFileSync(filePath1);
-    const file2 = fs.readFileSync(filePath2);
-
-    const normalizeJsonFile1 = JSON.parse(file1);
-    const normalizeJsonFile2 = JSON.parse(file2);
-
-    const keys1 = _.keys(normalizeJsonFile1);
-    const keys2 = _.keys(normalizeJsonFile2);
-    const keys = _.union(keys1, keys2);
-
-    keys.forEach((key) => {
-      if (!_.has(normalizeJsonFile1, key)) {
-        result = `${result}  + ${key}: ${normalizeJsonFile2[key]}\n`;
-      } else if (!_.has(normalizeJsonFile2, key)) {
-        result = `${result}  - ${key}: ${normalizeJsonFile1[key]}\n`;
-      } else if (normalizeJsonFile1[key] !== normalizeJsonFile2[key]) {
-        result = `${result}  - ${key}: ${normalizeJsonFile1[key]}\n`;
-        result = `${result}  + ${key}: ${normalizeJsonFile2[key]}\n`;
-      } else {
-        result = `${result}    ${key}: ${normalizeJsonFile2[key]}\n`;
-      }
-    });
-  } catch (err) {
-    console.error(err);
+    return { normalizeFile1, normalizeFile2 };
   }
-  return `${result}}`;
+
+  return null;
+};
+
+export default (filepath1, filepath2) => {
+  const { normalizeFile1, normalizeFile2 } = normalizeFiles(filepath1, filepath2);
+
+  const keys1 = _.keys(normalizeFile1);
+  const keys2 = _.keys(normalizeFile2);
+  const keys = _.union(keys1, keys2).sort();
+
+  const result = keys.map((key) => {
+    if (!_.has(normalizeFile1, key)) {
+      return `  + ${key}: ${normalizeFile2[key]}`;
+    }
+    if (!_.has(normalizeFile2, key)) {
+      return `  - ${key}: ${normalizeFile1[key]}`;
+    }
+    if (normalizeFile1[key] !== normalizeFile2[key]) {
+      return `  - ${key}: ${normalizeFile1[key]}\n  + ${key}: ${normalizeFile2[key]}`;
+    }
+    return `    ${key}: ${normalizeFile2[key]}`;
+  });
+
+  return `{\n${result.join('\n')}\n}`;
 };
