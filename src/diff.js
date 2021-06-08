@@ -4,8 +4,8 @@ import _ from 'lodash';
 
 const normalizeFiles = (file1, file2) => {
   if (file1.endsWith('.json') && file2.endsWith('.json')) {
-    const normalizeFile1 = JSON.parse(fs.readFileSync(file1));
-    const normalizeFile2 = JSON.parse(fs.readFileSync(file2));
+    const normalizeFile1 = JSON.parse(fs.readFileSync(file1, 'utf8'));
+    const normalizeFile2 = JSON.parse(fs.readFileSync(file2, 'utf8'));
 
     return { normalizeFile1, normalizeFile2 };
   }
