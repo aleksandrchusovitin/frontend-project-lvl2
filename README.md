@@ -38,6 +38,6 @@ gendiff file1.json file2.json
 
 [![asciicast](https://asciinema.org/a/418959.svg)](https://asciinema.org/a/418959)
 
-### Сomparing two yml files ###
+### Сomparing two '.yml' files ###
 
 [![asciicast](https://asciinema.org/a/423567.svg)](https://asciinema.org/a/423567)
