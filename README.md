@@ -8,7 +8,8 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fb3973358a1d66c2bc0e/test_coverage)](https://codeclimate.com/github/aleksandrchusovitin/frontend-project-lvl2/test_coverage)
 
-## Eslint and tests status
+## Eslint and tests status ##
+
 [![Node.js CI](https://github.com/aleksandrchusovitin/frontend-project-lvl2/actions/workflows/node.js.yml/badge.svg)](https://github.com/aleksandrchusovitin/frontend-project-lvl2/actions/workflows/node.js.yml)
 
 ## Install ##
@@ -36,3 +37,7 @@ gendiff file1.json file2.json
 ### How can I use the program? ###
 
 [![asciicast](https://asciinema.org/a/418959.svg)](https://asciinema.org/a/418959)
+
+### Сomparing two yml files ###
+
+[![asciicast](https://asciinema.org/a/423567.svg)](https://asciinema.org/a/423567)
