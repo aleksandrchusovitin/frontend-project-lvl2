@@ -1,23 +1,53 @@
-const stylish = (diff, obj1, obj2) => {
+import _ from 'lodash';
+
+const getIndent = (n) => ' '.repeat(n);
+
+const stringify = (data, depth) => {
+  if (!_.isObject(data)) {
+    return data;
+  }
   const lines = Object
-    .entries(diff)
-    .flatMap(([key, value]) => {
-      if (value === 'added') {
-        return `  + ${key}: ${obj2[key]}`;
+    .entries(data)
+    .map(([key, value]) => {
+      if (_.isObject(value)) {
+        return `${getIndent(depth + 8)}${key}: ${stringify(value, depth + 4)}`;
       }
-      if (value === 'deleted') {
-        return `  - ${key}: ${obj1[key]}`;
-      }
-      if (value === 'changed') {
-        return [`  - ${key}: ${obj1[key]}`, `  + ${key}: ${obj2[key]}`];
-      }
-      return `    ${key}: ${obj1[key]}`;
+      return `${getIndent(depth + 8)}${key}: ${value}`;
     });
+
   return [
     '{',
     ...lines,
-    '}',
+    `${getIndent(depth + 4)}}`,
   ].join('\n');
 };
 
-export default stylish;
+export default (tree) => {
+  const iter = (currentValue, depth) => {
+    const lines = currentValue.map((node) => {
+      const {
+        key, status, value, oldValue, newValue, children,
+      } = node;
+      switch (status) {
+        case 'added':
+          return `${getIndent(depth + 2)}+ ${key}: ${stringify(value, depth)}`;
+        case 'deleted':
+          return `${getIndent(depth + 2)}- ${key}: ${stringify(value, depth)}`;
+        case 'changed':
+          return `${getIndent(depth + 2)}- ${key}: ${stringify(oldValue, depth)}\n${getIndent(depth + 2)}+ ${key}: ${stringify(newValue, depth)}`;
+        case 'unchanged':
+          return `${getIndent(depth + 2)}  ${key}: ${stringify(value, depth)}`;
+        case 'hasChildren':
+          return `${getIndent(depth + 2)}  ${key}: ${iter(children, depth + 4)}`;
+        default:
+          throw new Error(`Wrong status ${status}`);
+      }
+    });
+    return [
+      '{',
+      ...lines,
+      `${getIndent(depth)}}`,
+    ].join('\n');
+  };
+  return iter(tree, 0);
+};
