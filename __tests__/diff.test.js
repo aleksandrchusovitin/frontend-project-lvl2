@@ -13,7 +13,7 @@ const jsonFile1 = getFixturePath('file1.json');
 const jsonFile2 = getFixturePath('file2.json');
 
 const yamlFile1 = getFixturePath('file1.yml');
-const yamlFile2 = getFixturePath('file2.yml');
+const yamlFile2 = getFixturePath('file2.yaml');
 
 const correctLineFixturePath = getFixturePath('differences.txt');
 const correctLine = fs.readFileSync(correctLineFixturePath, 'utf-8');
