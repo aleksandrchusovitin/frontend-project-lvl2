@@ -1,18 +1,13 @@
-import * as fs from 'fs';
 import yaml from 'js-yaml';
-import * as path from 'path';
 
-export default (filePath) => {
-  const extensionFile = path.extname(filePath);
-  const file = fs.readFileSync(filePath, 'utf-8');
-
-  switch (extensionFile) {
+export default (data, format) => {
+  switch (format) {
     case '.json':
-      return JSON.parse(file);
+      return JSON.parse(data);
     case '.yml':
     case '.yaml':
-      return yaml.load(file);
+      return yaml.safeLoad(data);
     default:
-      throw new Error(`Invalid file extension: '${filePath}'`);
+      throw new Error(`Wrong format: '${format}'`);
   }
 };
