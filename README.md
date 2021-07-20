@@ -41,3 +41,7 @@ gendiff file1.json file2.json
 ### Сomparing two '.yml' files ###
 
 [![asciicast](https://asciinema.org/a/423567.svg)](https://asciinema.org/a/423567)
+
+### Recursive comparison of files with nested structures ###
+
+[![asciicast](https://asciinema.org/a/426357.svg)](https://asciinema.org/a/426357)
