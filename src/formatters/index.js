@@ -1,4 +1,4 @@
-import formatStylish from './formatters/formatStylish.js';
+import formatStylish from './formatStylish.js';
 
 export default (tree, format) => {
   switch (format) {

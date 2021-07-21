@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import parse from './parsers.js';
 import buildTree from './buildTree.js';
-import format from './format.js';
+import format from './formatters/index.js';
 
 export default (path1, path2, formatName = 'stylish') => {
   const formatFile1 = path.extname(path1);
