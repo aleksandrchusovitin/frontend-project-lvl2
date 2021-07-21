@@ -45,3 +45,7 @@ gendiff file1.json file2.json
 ### Recursive comparison of files with nested structures ###
 
 [![asciicast](https://asciinema.org/a/426357.svg)](https://asciinema.org/a/426357)
+
+### Comparing files using a plain formatter ###
+
+[![asciicast](https://asciinema.org/a/426505.svg)](https://asciinema.org/a/426505)
