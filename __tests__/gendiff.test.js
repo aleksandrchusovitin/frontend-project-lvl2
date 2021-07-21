@@ -24,6 +24,6 @@ test('format stylish test', () => {
 });
 
 test('format plain test', () => {
-  expect(genDiff(jsonFile1, jsonFile2)).toBe(formatPlainCorrectLine);
-  expect(genDiff(yamlFile1, yamlFile2)).toBe(formatPlainCorrectLine);
+  expect(genDiff(jsonFile1, jsonFile2, 'plain')).toBe(formatPlainCorrectLine);
+  expect(genDiff(yamlFile1, yamlFile2, 'plain')).toBe(formatPlainCorrectLine);
 });

@@ -1,15 +1,13 @@
-import _ from 'lodash';
-
 const getIndent = (n) => ' '.repeat(n);
 
 const stringify = (data, depth) => {
-  if (!_.isObject(data)) {
+  if (typeof data !== 'object' || data === null) {
     return data;
   }
   const lines = Object
     .entries(data)
     .map(([key, value]) => {
-      if (_.isObject(value)) {
+      if (typeof value === 'object') {
         return `${getIndent(depth + 8)}${key}: ${stringify(value, depth + 4)}`;
       }
       return `${getIndent(depth + 8)}${key}: ${value}`;
