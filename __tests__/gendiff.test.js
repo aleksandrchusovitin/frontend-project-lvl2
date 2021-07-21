@@ -17,6 +17,7 @@ const yamlFile2 = getFixturePath('file2.yaml');
 
 const formatStylishCorrectLine = fs.readFileSync(getFixturePath('formatStylishCorrectLine.txt'), 'utf-8');
 const formatPlainCorrectLine = fs.readFileSync(getFixturePath('formatPlainCorrectLine.txt'), 'utf-8');
+const formatJsonCorrectLine = fs.readFileSync(getFixturePath('formatJsonCorrectLine.txt'), 'utf-8');
 
 test('format stylish test', () => {
   expect(genDiff(jsonFile1, jsonFile2)).toBe(formatStylishCorrectLine);
@@ -26,4 +27,9 @@ test('format stylish test', () => {
 test('format plain test', () => {
   expect(genDiff(jsonFile1, jsonFile2, 'plain')).toBe(formatPlainCorrectLine);
   expect(genDiff(yamlFile1, yamlFile2, 'plain')).toBe(formatPlainCorrectLine);
+});
+
+test('format json test', () => {
+  expect(genDiff(jsonFile1, jsonFile2, 'json')).toBe(formatJsonCorrectLine);
+  expect(genDiff(yamlFile1, yamlFile2, 'json')).toBe(formatJsonCorrectLine);
 });
