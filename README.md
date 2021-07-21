@@ -49,3 +49,7 @@ gendiff file1.json file2.json
 ### Comparing files using a plain formatter ###
 
 [![asciicast](https://asciinema.org/a/426505.svg)](https://asciinema.org/a/426505)
+
+### Comparing files using a JSON formatter ###
+
+[![asciicast](https://asciinema.org/a/426507.svg)](https://asciinema.org/a/426507)
