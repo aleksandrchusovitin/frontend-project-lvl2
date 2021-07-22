@@ -5,8 +5,8 @@ import buildTree from './buildTree.js';
 import format from './formatters/index.js';
 
 export default (path1, path2, formatName = 'stylish') => {
-  const formatFile1 = path.extname(path1);
-  const formatFile2 = path.extname(path2);
+  const formatFile1 = path.extname(path1).slice(1);
+  const formatFile2 = path.extname(path2).slice(1);
 
   const file1 = fs.readFileSync(path1);
   const file2 = fs.readFileSync(path2);
