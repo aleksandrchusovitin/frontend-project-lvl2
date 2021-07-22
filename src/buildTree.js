@@ -10,22 +10,22 @@ const buildTree = (data1, data2) => {
     const value2 = data2[key];
 
     if (!_.has(data1, key)) {
-      return { key, status: 'added', value: value2 };
+      return { key, type: 'added', value: value2 };
     }
     if (!_.has(data2, key)) {
-      return { key, status: 'deleted', value: value1 };
+      return { key, type: 'deleted', value: value1 };
     }
 
     if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
-      return { key, status: 'hasChildren', children: buildTree(value1, value2) };
+      return { key, type: 'hasChildren', children: buildTree(value1, value2) };
     }
 
     if (!_.isEqual(value1, value2)) {
       return {
-        key, status: 'changed', oldValue: value1, newValue: value2,
+        key, type: 'changed', oldValue: value1, newValue: value2,
       };
     }
-    return { key, status: 'unchanged', value: value1 };
+    return { key, type: 'unchanged', value: value1 };
   });
 };
 

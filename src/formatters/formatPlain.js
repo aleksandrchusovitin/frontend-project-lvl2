@@ -10,10 +10,10 @@ export default (tree) => {
   const iter = (currentValue, path) => {
     const lines = currentValue.map((node) => {
       const {
-        key, status, value, oldValue, newValue, children,
+        key, type, value, oldValue, newValue, children,
       } = node;
       const newPath = [path, key].flat();
-      switch (status) {
+      switch (type) {
         case 'added':
           return `Property '${newPath.join('.')}' was added with value: ${stringify(value)}`;
         case 'deleted':
@@ -25,7 +25,7 @@ export default (tree) => {
         case 'hasChildren':
           return `${iter(children, newPath.join('.'))}`;
         default:
-          throw new Error(`Wrong status ${status}`);
+          throw new Error(`Wrong type ${type}`);
       }
     })
       .filter((line) => line !== 'unchanged node');

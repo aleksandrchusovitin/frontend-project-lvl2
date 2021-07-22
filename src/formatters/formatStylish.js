@@ -24,9 +24,9 @@ export default (tree) => {
   const iter = (currentValue, depth) => {
     const lines = currentValue.map((node) => {
       const {
-        key, status, value, oldValue, newValue, children,
+        key, type, value, oldValue, newValue, children,
       } = node;
-      switch (status) {
+      switch (type) {
         case 'added':
           return `${getIndent(depth + 2)}+ ${key}: ${stringify(value, depth)}`;
         case 'deleted':
@@ -38,7 +38,7 @@ export default (tree) => {
         case 'hasChildren':
           return `${getIndent(depth + 2)}  ${key}: ${iter(children, depth + 4)}`;
         default:
-          throw new Error(`Wrong status ${status}`);
+          throw new Error(`Wrong type ${type}`);
       }
     });
     return [
