@@ -1,4 +1,4 @@
-const getIndent = (n) => ' '.repeat(n);
+const makeIndent = (n) => ' '.repeat(n);
 
 const stringify = (data, depth) => {
   if (typeof data !== 'object' || data === null) {
@@ -8,15 +8,15 @@ const stringify = (data, depth) => {
     .entries(data)
     .map(([key, value]) => {
       if (typeof value === 'object') {
-        return `${getIndent(depth + 8)}${key}: ${stringify(value, depth + 4)}`;
+        return `${makeIndent(depth + 8)}${key}: ${stringify(value, depth + 4)}`;
       }
-      return `${getIndent(depth + 8)}${key}: ${value}`;
+      return `${makeIndent(depth + 8)}${key}: ${value}`;
     });
 
   return [
     '{',
     ...lines,
-    `${getIndent(depth + 4)}}`,
+    `${makeIndent(depth + 4)}}`,
   ].join('\n');
 };
 
@@ -28,15 +28,15 @@ export default (tree) => {
       } = node;
       switch (type) {
         case 'added':
-          return `${getIndent(depth + 2)}+ ${key}: ${stringify(value, depth)}`;
+          return `${makeIndent(depth + 2)}+ ${key}: ${stringify(value, depth)}`;
         case 'deleted':
-          return `${getIndent(depth + 2)}- ${key}: ${stringify(value, depth)}`;
+          return `${makeIndent(depth + 2)}- ${key}: ${stringify(value, depth)}`;
         case 'changed':
-          return `${getIndent(depth + 2)}- ${key}: ${stringify(oldValue, depth)}\n${getIndent(depth + 2)}+ ${key}: ${stringify(newValue, depth)}`;
+          return `${makeIndent(depth + 2)}- ${key}: ${stringify(oldValue, depth)}\n${makeIndent(depth + 2)}+ ${key}: ${stringify(newValue, depth)}`;
         case 'unchanged':
-          return `${getIndent(depth + 2)}  ${key}: ${stringify(value, depth)}`;
+          return `${makeIndent(depth + 2)}  ${key}: ${stringify(value, depth)}`;
         case 'hasChildren':
-          return `${getIndent(depth + 2)}  ${key}: ${iter(children, depth + 4)}`;
+          return `${makeIndent(depth + 2)}  ${key}: ${iter(children, depth + 4)}`;
         default:
           throw new Error(`Wrong type ${type}`);
       }
@@ -44,7 +44,7 @@ export default (tree) => {
     return [
       '{',
       ...lines,
-      `${getIndent(depth)}}`,
+      `${makeIndent(depth)}}`,
     ].join('\n');
   };
   return iter(tree, 0);
