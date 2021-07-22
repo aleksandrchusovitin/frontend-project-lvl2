@@ -13,16 +13,16 @@ export default (tree) => {
       const {
         key, type, value, oldValue, newValue, children,
       } = node;
-      const newPath = [path, key].flat();
+      const newPath = [...path, key].join('.');
       switch (type) {
         case 'added':
-          return `Property '${newPath.join('.')}' was added with value: ${stringify(value)}`;
+          return `Property '${newPath}' was added with value: ${stringify(value)}`;
         case 'deleted':
-          return `Property '${newPath.join('.')}' was removed`;
+          return `Property '${newPath}' was removed`;
         case 'changed':
-          return `Property '${newPath.join('.')}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`;
+          return `Property '${newPath}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`;
         case 'hasChildren':
-          return `${iter(children, newPath.join('.'))}`;
+          return `${iter(children, [...path, key])}`;
         default:
           throw new Error(`Wrong type ${type}`);
       }
