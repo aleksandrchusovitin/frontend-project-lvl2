@@ -16,11 +16,11 @@ const buildTree = (data1, data2) => {
       return { key, status: 'deleted', value: value1 };
     }
 
-    if (_.isObject(value1) && _.isObject(value2)) {
+    if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return { key, status: 'hasChildren', children: buildTree(value1, value2) };
     }
 
-    if (value1 !== value2) {
+    if (!_.isEqual(value1, value2)) {
       return {
         key, status: 'changed', oldValue: value1, newValue: value2,
       };
