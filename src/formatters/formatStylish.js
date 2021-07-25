@@ -1,15 +1,17 @@
+import _ from 'lodash';
+
 const makeIndent = (n) => ' '.repeat(n);
 
 const indentSize = 2;
 
 const stringify = (data, depth) => {
-  if (typeof data !== 'object' || data === null) {
+  if (!_.isPlainObject(data)) {
     return data;
   }
   const lines = Object
     .entries(data)
     .map(([key, value]) => {
-      if (typeof value === 'object') {
+      if (_.isPlainObject(value)) {
         return `${makeIndent(depth + indentSize * 4)}${key}: ${stringify(value, depth + indentSize * 2)}`;
       }
       return `${makeIndent(depth + indentSize * 4)}${key}: ${value}`;

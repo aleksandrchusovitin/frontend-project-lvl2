@@ -1,5 +1,7 @@
+import _ from 'lodash';
+
 const stringify = (data) => {
-  if (typeof data === 'object' && data !== null) {
+  if (_.isPlainObject(data)) {
     return '[complex value]';
   }
 
