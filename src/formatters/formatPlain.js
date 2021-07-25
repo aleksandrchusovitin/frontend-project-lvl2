@@ -9,10 +9,9 @@ const stringify = (data) => {
 export default (tree) => {
   const iter = (currentValue, path) => currentValue
     .filter(({ type }) => type !== 'unchanged')
-    .map((node) => {
-      const {
-        key, type, value, oldValue, newValue, children,
-      } = node;
+    .map(({
+      key, type, value, oldValue, newValue, children,
+    }) => {
       const newPath = [...path, key].join('.');
       switch (type) {
         case 'added':
